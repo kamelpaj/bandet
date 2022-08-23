@@ -29,17 +29,18 @@ export default function Profile(): JSX.Element {
   const user = useAuthStore((state) => state.session?.user);
   const toast = useToast();
 
-  useEffect(() => {
-    async function getUsername() {
-      if (user) {
-        const { data } = await supabase
-          .from<definitions["profiles"]>("profiles")
-          .select("username")
-          .eq("id", user.id)
-          .single();
-        if (data?.username) setCurrentUsername(data.username);
-      }
+  async function getUsername() {
+    if (user) {
+      const { data } = await supabase
+        .from<definitions["profiles"]>("profiles")
+        .select("username")
+        .eq("id", user.id)
+        .single();
+      if (data?.username) setCurrentUsername(data.username);
     }
+  }
+
+  useEffect(() => {
     getUsername();
   }, [user]);
 
@@ -63,6 +64,7 @@ export default function Profile(): JSX.Element {
           duration: 5000,
           isClosable: true,
         });
+        getUsername();
       }
       if (error) {
         throw error;
