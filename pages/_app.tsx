@@ -6,7 +6,11 @@ import { useAuthStore } from "../store/authStore";
 import Layout from "../components/Layout";
 import { useEffect } from "react";
 
-export const theme = extendTheme({});
+const config = {
+  initialColorMode: "dark",
+  useSystemColorMode: true,
+};
+export const theme = extendTheme({ config });
 const queryClient = new QueryClient();
 
 function MyApp({ Component, pageProps }: AppProps) {
