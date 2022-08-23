@@ -49,7 +49,7 @@ export default function Profile(): JSX.Element {
 
       const updates = {
         id: user?.id,
-        newUsername,
+        username: newUsername,
         updated_at: new Date(),
       };
 
