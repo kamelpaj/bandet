@@ -37,7 +37,7 @@ export default function Upload() {
   const [isFileAllowed, setIsFileAllowed] = useState(false);
 
   useEffect(() => {
-    const regex = new RegExp(/^.*\/(mp3|ogg|wav|x-m4a|flac)$/i);
+    const regex = new RegExp(/^.*\/(mp3|ogg|wav|x-m4a|flac|mpeg)$/i);
     if (file) setIsFileAllowed(regex.test(file?.type));
   }, [file]);
 
@@ -134,7 +134,7 @@ export default function Upload() {
         <FormControl isRequired>
           <FormLabel>Audio file</FormLabel>
           <Text color={useColorModeValue("gray.700", "gray.400")} pb="1">
-            (supported file types: mp3 ogg, wav, x-m4a, flac)
+            (supported file types: mp3, ogg, wav, x-m4a, flac)
           </Text>
           <Input
             accept="audio/*"
