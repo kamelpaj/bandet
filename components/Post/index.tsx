@@ -22,7 +22,7 @@ const Post: React.FC<Props> = ({ data }) => {
     <Stack
       borderRadius="lg"
       w={{ base: "100%", md: "540px" }}
-      direction={{ base: "column", md: "row" }}
+      minH="20rem"
       bg={useColorModeValue("white", "gray.800")}
       borderWidth="1px"
       rounded="lg"

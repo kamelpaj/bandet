@@ -36,9 +36,15 @@ const Home: NextPage = () => {
             </Center>
           )}
           {error && <Error message={error.message} />}
-          {data &&
-            data?.length > 0 &&
-            data.map((post, i) => <Post key={i} data={post} />)}
+          <Wrap>
+            {data &&
+              data?.length > 0 &&
+              data.map((post, i) => (
+                <WrapItem key={i} w={{ base: "full", md: "auto" }}>
+                  <Post data={post} />
+                </WrapItem>
+              ))}
+          </Wrap>
         </>
       </Flex>
     </>
