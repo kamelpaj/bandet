@@ -18,8 +18,9 @@ import {
   Wrap,
   WrapItem,
   useToast,
+  Text,
 } from "@chakra-ui/react";
-import { KeyboardEvent, useState } from "react";
+import { KeyboardEvent, useEffect, useState } from "react";
 import { supabase } from "../utils/supabase";
 import { v4 as uuidv4 } from "uuid";
 import { AddIcon } from "@chakra-ui/icons";
@@ -33,6 +34,12 @@ export default function Upload() {
   const [tags, setTags] = useState<string[]>([]);
   const [currTag, setCurrTag] = useState("");
   const [loading, setLoading] = useState(false);
+  const [isFileAllowed, setIsFileAllowed] = useState(false);
+
+  useEffect(() => {
+    const regex = new RegExp(/^.*\/(mp3|ogg|wav|x-m4a|flac)$/i);
+    if (file) setIsFileAllowed(regex.test(file?.type));
+  }, [file]);
 
   const toast = useToast();
   const router = useRouter();
@@ -125,7 +132,10 @@ export default function Upload() {
           <Textarea onChange={(e) => setDescription(e.target.value)} />
         </FormControl>
         <FormControl isRequired>
-          <FormLabel>File (audio/video)</FormLabel>
+          <FormLabel>Audio file</FormLabel>
+          <Text color={useColorModeValue("gray.700", "gray.400")} pb="1">
+            (supported file types: mp3 ogg, wav, x-m4a, flac)
+          </Text>
           <Input
             accept="audio/*"
             type="file"
@@ -167,7 +177,9 @@ export default function Upload() {
 
         <Button
           onClick={handleUpload}
-          disabled={!title || !file || !description || loading}
+          disabled={
+            !title || !file || !description || loading || !isFileAllowed
+          }
           isLoading={loading}
           loadingText="Uploading..."
           colorScheme="green"
