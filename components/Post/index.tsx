@@ -22,6 +22,7 @@ const Post: React.FC<Props> = ({ data }) => {
     <Stack
       borderRadius="lg"
       w={{ base: "100%", md: "540px" }}
+      maxW={{ base: "100vw", md: "540px" }}
       minH="20rem"
       bg={useColorModeValue("white", "gray.800")}
       borderWidth="1px"
@@ -54,7 +55,7 @@ const Post: React.FC<Props> = ({ data }) => {
         <Stack direction={"row"}>
           {post.tags &&
             post.tags.map((t, i) => (
-              <Tag key={i} size="lg">
+              <Tag key={i} size="lg" textOverflow="ellipsis">
                 {t as string}
               </Tag>
             ))}

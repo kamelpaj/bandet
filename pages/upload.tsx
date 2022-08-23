@@ -46,14 +46,24 @@ export default function Upload() {
   const currentUser = supabase.auth.user();
 
   const handleKeyDown = (event: KeyboardEvent<HTMLInputElement>) => {
-    if (event.key === "Enter") {
+    if (event.code === "Enter" || event.code === "Space") {
       handleAddTag();
     }
   };
 
   const handleAddTag = () => {
-    if (currTag.length > 0) {
-      setTags([...tags, currTag]);
+    if (currTag.length > 12) {
+      toast({
+        title: "Tag too long!",
+        description: "Max length is 12 characters",
+        status: "info",
+        duration: 3000,
+        isClosable: true,
+      });
+      return;
+    }
+    if (currTag.length > 2) {
+      setTags([...tags, currTag.trim()]);
       setCurrTag("");
     }
   };
