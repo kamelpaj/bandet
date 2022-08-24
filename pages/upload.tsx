@@ -21,7 +21,7 @@ import {
   Text,
 } from "@chakra-ui/react";
 import { KeyboardEvent, useEffect, useState } from "react";
-import { supabase } from "../utils/supabase";
+import { supabase } from "@utils/supabase";
 import { v4 as uuidv4 } from "uuid";
 import { AddIcon } from "@chakra-ui/icons";
 import { useRouter } from "next/router";

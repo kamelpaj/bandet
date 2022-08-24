@@ -2,10 +2,9 @@ import { Center, Flex, Spinner, Wrap, WrapItem } from "@chakra-ui/react";
 import { useQuery } from "@tanstack/react-query";
 import type { NextPage } from "next";
 import Head from "next/head";
-import Link from "next/link";
-import Error from "../components/Error";
-import PostCard from "../components/PostCard";
-import { fetchPosts } from "../queries/post";
+import Error from "@components/Error";
+import PostCard from "@components/PostCard";
+import { fetchPosts } from "@queries/post";
 import { iPost } from "../types/post";
 
 const Home: NextPage = () => {

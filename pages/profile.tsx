@@ -7,17 +7,13 @@ import {
   Input,
   Stack,
   useColorModeValue,
-  HStack,
   Avatar,
-  AvatarBadge,
-  IconButton,
   Center,
   useToast,
 } from "@chakra-ui/react";
-import { SmallCloseIcon } from "@chakra-ui/icons";
 import { supabase } from "../utils/supabase";
 import { useEffect, useState } from "react";
-import { useAuthStore } from "../store/authStore";
+import { useAuthStore } from "@store/authStore";
 import { definitions } from "../types/supabase";
 
 export default function Profile(): JSX.Element {

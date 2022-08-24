@@ -9,9 +9,8 @@ import {
   useColorModeValue,
   useToast,
 } from "@chakra-ui/react";
-import { GetServerSideProps } from "next";
 import { useRouter } from "next/router";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { supabase } from "../utils/supabase";
 
 export default function Login(): JSX.Element {
@@ -20,8 +19,8 @@ export default function Login(): JSX.Element {
   const router = useRouter();
   const toast = useToast();
 
-  const session = supabase.auth.session()
-  
+  const session = supabase.auth.session();
+
   if (session) router.push("/");
 
   const handleLogin = () => {

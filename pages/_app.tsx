@@ -1,9 +1,9 @@
 import type { AppProps } from "next/app";
 import { ChakraProvider, extendTheme } from "@chakra-ui/react";
-import { supabase } from "../utils/supabase";
+import { supabase } from "@utils/supabase";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { useAuthStore } from "../store/authStore";
-import Layout from "../components/Layout";
+import { useAuthStore } from "@store/authStore";
+import Layout from "@components/Layout";
 import { useEffect } from "react";
 
 const config = {
