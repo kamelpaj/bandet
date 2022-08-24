@@ -1,10 +1,10 @@
 import { Center, Flex, Spinner, Wrap, WrapItem } from "@chakra-ui/react";
-import { Session } from "@supabase/supabase-js";
 import { useQuery } from "@tanstack/react-query";
-import type { GetServerSideProps, NextPage } from "next";
+import type { NextPage } from "next";
 import Head from "next/head";
+import Link from "next/link";
 import Error from "../components/Error";
-import Post from "../components/Post";
+import PostCard from "../components/PostCard";
 import { fetchPosts } from "../queries/post";
 import { iPost } from "../types/post";
 
@@ -26,7 +26,7 @@ const Home: NextPage = () => {
       <Flex
         alignItems={"center"}
         direction={{ base: "column", lg: "row" }}
-        p="2"
+        p="4"
         gap="2"
       >
         <>
@@ -36,12 +36,18 @@ const Home: NextPage = () => {
             </Center>
           )}
           {error && <Error message={error.message} />}
-          <Wrap>
+
+          <Wrap justifyContent={"center"}>
             {data &&
               data?.length > 0 &&
-              data.map((post, i) => (
-                <WrapItem key={i} w={{ base: "full", md: "auto" }}>
-                  <Post data={post} />
+              data.map((postData, i) => (
+                <WrapItem
+                  key={i}
+                  w={{ base: "full", md: "auto" }}
+                  style={{ transition: "all .2s ease-in-out" }}
+                  _hover={{ transform: "scale(1.003)"}}
+                >
+                  <PostCard data={postData} />
                 </WrapItem>
               ))}
           </Wrap>

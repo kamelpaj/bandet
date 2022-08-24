@@ -4,18 +4,17 @@ import {
   useColorModeValue,
   Tag,
   Text,
-  Box,
   Avatar,
   Flex,
-  Divider,
 } from "@chakra-ui/react";
+import Link from "next/link";
 import { iPost } from "../../types/post";
 
 interface Props {
   data: iPost;
 }
 
-const Post: React.FC<Props> = ({ data }) => {
+const PostCard: React.FC<Props> = ({ data }) => {
   const { post, file } = data;
 
   return (
@@ -45,20 +44,27 @@ const Post: React.FC<Props> = ({ data }) => {
               : "[no username]"}
           </Text>
         </Flex>
-        <Heading fontSize={"2xl"} fontFamily={"body"}>
-          {post.title}
-        </Heading>
 
-        <Text color={useColorModeValue("gray.700", "gray.400")}>
-          {post.description}
-        </Text>
-        <Stack direction={"row"}>
-          {post.tags &&
-            post.tags.map((t, i) => (
-              <Tag key={i} size="lg" textOverflow="ellipsis">
-                {t as string}
-              </Tag>
-            ))}
+        <Stack _hover={{ cursor: "pointer" }}>
+          <Link href={`/post/${post.id}`}>
+            <a>
+              <Heading fontSize={"2xl"} fontFamily={"body"}>
+                {post.title}
+              </Heading>
+
+              <Text color={useColorModeValue("gray.700", "gray.400")}>
+                {post.description}
+              </Text>
+              <Stack direction={"row"}>
+                {post.tags &&
+                  post.tags.map((t, i) => (
+                    <Tag key={i} size="lg" textOverflow="ellipsis">
+                      {t as string}
+                    </Tag>
+                  ))}
+              </Stack>
+            </a>
+          </Link>
         </Stack>
 
         <audio controls style={{ width: "100%", marginTop: "1rem" }}>
@@ -70,4 +76,4 @@ const Post: React.FC<Props> = ({ data }) => {
   );
 };
 
-export default Post;
+export default PostCard;
