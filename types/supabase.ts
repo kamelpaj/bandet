@@ -20,6 +20,7 @@ export interface paths {
           created_at?: parameters["rowFilter.comment.created_at"];
           text?: parameters["rowFilter.comment.text"];
           created_by?: parameters["rowFilter.comment.created_by"];
+          post_id?: parameters["rowFilter.comment.post_id"];
           /** Filtering Columns */
           select?: parameters["select"];
           /** Ordering */
@@ -74,6 +75,7 @@ export interface paths {
           created_at?: parameters["rowFilter.comment.created_at"];
           text?: parameters["rowFilter.comment.text"];
           created_by?: parameters["rowFilter.comment.created_by"];
+          post_id?: parameters["rowFilter.comment.post_id"];
         };
         header: {
           /** Preference */
@@ -92,6 +94,7 @@ export interface paths {
           created_at?: parameters["rowFilter.comment.created_at"];
           text?: parameters["rowFilter.comment.text"];
           created_by?: parameters["rowFilter.comment.created_by"];
+          post_id?: parameters["rowFilter.comment.post_id"];
         };
         body: {
           /** comment */
@@ -214,7 +217,6 @@ export interface paths {
           id?: parameters["rowFilter.post.id"];
           created_at?: parameters["rowFilter.post.created_at"];
           file_id?: parameters["rowFilter.post.file_id"];
-          comments?: parameters["rowFilter.post.comments"];
           created_by?: parameters["rowFilter.post.created_by"];
           title?: parameters["rowFilter.post.title"];
           description?: parameters["rowFilter.post.description"];
@@ -272,7 +274,6 @@ export interface paths {
           id?: parameters["rowFilter.post.id"];
           created_at?: parameters["rowFilter.post.created_at"];
           file_id?: parameters["rowFilter.post.file_id"];
-          comments?: parameters["rowFilter.post.comments"];
           created_by?: parameters["rowFilter.post.created_by"];
           title?: parameters["rowFilter.post.title"];
           description?: parameters["rowFilter.post.description"];
@@ -294,7 +295,6 @@ export interface paths {
           id?: parameters["rowFilter.post.id"];
           created_at?: parameters["rowFilter.post.created_at"];
           file_id?: parameters["rowFilter.post.file_id"];
-          comments?: parameters["rowFilter.post.comments"];
           created_by?: parameters["rowFilter.post.created_by"];
           title?: parameters["rowFilter.post.title"];
           description?: parameters["rowFilter.post.description"];
@@ -331,13 +331,19 @@ export interface definitions {
      */
     created_at?: string;
     /** Format: text */
-    text?: string;
+    text: string;
     /**
      * Format: uuid
      * @description Note:
      * This is a Foreign Key to `profiles.id`.<fk table='profiles' column='id'/>
      */
-    created_by?: string;
+    created_by: string;
+    /**
+     * Format: bigint
+     * @description Note:
+     * This is a Foreign Key to `post.id`.<fk table='post' column='id'/>
+     */
+    post_id: number;
   };
   profiles: {
     /**
@@ -369,8 +375,6 @@ export interface definitions {
     created_at?: string;
     /** Format: uuid */
     file_id?: string;
-    /** Format: ARRAY */
-    comments?: unknown[];
     /**
      * Format: uuid
      * @description Note:
@@ -429,6 +433,8 @@ export interface parameters {
   "rowFilter.comment.text": string;
   /** Format: uuid */
   "rowFilter.comment.created_by": string;
+  /** Format: bigint */
+  "rowFilter.comment.post_id": string;
   /** @description profiles */
   "body.profiles": definitions["profiles"];
   /** Format: uuid */
@@ -449,8 +455,6 @@ export interface parameters {
   "rowFilter.post.created_at": string;
   /** Format: uuid */
   "rowFilter.post.file_id": string;
-  /** Format: ARRAY */
-  "rowFilter.post.comments": string;
   /** Format: uuid */
   "rowFilter.post.created_by": string;
   /** Format: text */

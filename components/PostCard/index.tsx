@@ -6,15 +6,21 @@ import {
   Text,
   Avatar,
   Flex,
+  IconButton,
+  VStack,
+  HStack,
+  Button,
 } from "@chakra-ui/react";
 import Link from "next/link";
 import { iPost } from "../../types/post";
+import { BiComment } from "react-icons/bi";
 
 interface Props {
   data: iPost;
+  feedView: boolean;
 }
 
-const PostCard: React.FC<Props> = ({ data }) => {
+const PostCard: React.FC<Props> = ({ data, feedView }) => {
   const { post, file } = data;
 
   return (
@@ -22,7 +28,7 @@ const PostCard: React.FC<Props> = ({ data }) => {
       borderRadius="lg"
       w={{ base: "100%", md: "540px" }}
       maxW={{ base: "100vw", md: "540px" }}
-      minH="20rem"
+      maxH="25rem"
       bg={useColorModeValue("white", "gray.800")}
       borderWidth="1px"
       rounded="lg"
@@ -45,17 +51,20 @@ const PostCard: React.FC<Props> = ({ data }) => {
           </Text>
         </Flex>
 
-        <Stack _hover={{ cursor: "pointer" }}>
+        <Stack _hover={{ cursor: "pointer" }} pb="2">
           <Link href={`/post/${post.id}`}>
             <a>
               <Heading fontSize={"2xl"} fontFamily={"body"}>
                 {post.title}
               </Heading>
 
-              <Text color={useColorModeValue("gray.700", "gray.400")}>
+              <Text
+                color={useColorModeValue("gray.700", "gray.400")}
+                textOverflow="ellipsis"
+              >
                 {post.description}
               </Text>
-              <Stack direction={"row"}>
+              <Stack direction={"row"} pt="2">
                 {post.tags &&
                   post.tags.map((t, i) => (
                     <Tag key={i} size="lg" textOverflow="ellipsis">
@@ -72,6 +81,15 @@ const PostCard: React.FC<Props> = ({ data }) => {
           Your browser does not support the audio element.
         </audio>
       </Stack>
+      {feedView && (
+        <HStack pt="4">
+          <Link href={`/post/${post.id}`}>
+            <Button aria-label="See comments" leftIcon={<BiComment />}>
+              {post.comment ? post.comment.length : 0}
+            </Button>
+          </Link>
+        </HStack>
+      )}
     </Stack>
   );
 };

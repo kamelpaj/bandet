@@ -37,7 +37,7 @@ export default function Upload() {
   const [isFileAllowed, setIsFileAllowed] = useState(false);
 
   useEffect(() => {
-    const regex = new RegExp(/^.*\/(mp3|ogg|wav|x-m4a|flac|mpeg)$/i);
+    const regex = new RegExp(/^.*\/(mp3|ogg|wav|x-m4a|m4a|flac|mpeg)$/i);
     if (file) setIsFileAllowed(regex.test(file?.type));
   }, [file]);
 
@@ -135,11 +135,18 @@ export default function Upload() {
         </Heading>
         <FormControl isRequired>
           <FormLabel>Title</FormLabel>
-          <Input type="text" onChange={(e) => setTitle(e.target.value)} />
+          <Input
+            variant="filled"
+            type="text"
+            onChange={(e) => setTitle(e.target.value)}
+          />
         </FormControl>
         <FormControl isRequired>
           <FormLabel>Description</FormLabel>
-          <Textarea onChange={(e) => setDescription(e.target.value)} />
+          <Textarea
+            variant="filled"
+            onChange={(e) => setDescription(e.target.value)}
+          />
         </FormControl>
         <FormControl isRequired>
           <FormLabel>Audio file</FormLabel>
@@ -147,6 +154,7 @@ export default function Upload() {
             (supported file types: mp3, ogg, wav, x-m4a, flac)
           </Text>
           <Input
+            variant="filled"
             accept="audio/*"
             type="file"
             onChange={(e) => {
@@ -158,6 +166,7 @@ export default function Upload() {
           <FormLabel>Tags</FormLabel>
           <InputGroup>
             <Input
+              variant="filled"
               type="text"
               value={currTag}
               onChange={(e) => setCurrTag(e.target.value)}

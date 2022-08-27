@@ -2,7 +2,8 @@ import { definitions } from "./supabase";
 
 export interface iPost {
   post: definitions["post"] & {
-    profiles?: { username: string; avatar_url: string };
+    profiles?: definitions["profiles"];
+    comment?: [definitions["comment"] & { profiles: definitions["profiles"] }];
   };
   file: string;
 }

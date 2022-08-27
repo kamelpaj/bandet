@@ -10,7 +10,8 @@ export default async function handler(
 
   const postData = await supabase
     .from<definitions["post"]>("post")
-    .select("*, profiles (username, avatar_url)");
+    .select("*, profiles (username, avatar_url), comment (text)");
+
   const posts = postData.data?.map((post) => {
     if (post.file_id) {
       const file = supabase.storage.from("filer").getPublicUrl(post.file_id)

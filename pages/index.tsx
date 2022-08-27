@@ -43,10 +43,8 @@ const Home: NextPage = () => {
                 <WrapItem
                   key={i}
                   w={{ base: "full", md: "auto" }}
-                  style={{ transition: "all .2s ease-in-out" }}
-                  _hover={{ transform: "scale(1.003)"}}
                 >
-                  <PostCard data={postData} />
+                  <PostCard feedView data={postData} />
                 </WrapItem>
               ))}
           </Wrap>

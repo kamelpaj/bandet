@@ -12,14 +12,13 @@ export default async function handler(
 
   const post = await supabase
     .from<definitions["post"]>("post")
-    .select("*, profiles (username, avatar_url)")
+    .select("*, profiles (username, avatar_url), comment (*, profiles (username, avatar_url))")
     .eq("id", id)
     .single();
 
   if (post.body?.file_id) {
-    const file = supabase.storage
-      .from("filer")
-      .getPublicUrl(post.body?.file_id).data?.publicURL;
+    const file = supabase.storage.from("filer").getPublicUrl(post.body?.file_id)
+      .data?.publicURL;
 
     if (file) res.status(200).json({ post: post.body, file });
   }
