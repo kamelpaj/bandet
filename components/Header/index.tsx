@@ -21,7 +21,7 @@ import { MoonIcon, SunIcon } from "@chakra-ui/icons";
 import { useRouter } from "next/router";
 import { supabase } from "../../utils/supabase";
 import Link from "next/link";
-import { HiOutlineUpload } from "react-icons/hi";
+import { HiOutlineUpload, HiOutlineMicrophone } from "react-icons/hi";
 import { useAuthStore } from "../../store/authStore";
 
 export default function Header() {

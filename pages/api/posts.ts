@@ -10,7 +10,8 @@ export default async function handler(
 
   const postData = await supabase
     .from<definitions["post"]>("post")
-    .select("*, profiles (username, avatar_url), comment (text)");
+    .select("*, profiles (username, avatar_url), comment (text)")
+    .order("created_at", { ascending: false });
 
   const posts = postData.data?.map((post) => {
     if (post.file_id) {
