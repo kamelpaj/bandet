@@ -10,6 +10,8 @@ import {
   VStack,
   HStack,
   Button,
+  Wrap,
+  WrapItem,
 } from "@chakra-ui/react";
 import Link from "next/link";
 import { iPost } from "../../types/post";
@@ -28,7 +30,7 @@ const PostCard: React.FC<Props> = ({ data, feedView }) => {
       borderRadius="lg"
       w={{ base: "100%", md: "540px" }}
       maxW={{ base: "100vw", md: "540px" }}
-      maxH="25rem"
+      h="25rem"
       bg={useColorModeValue("white", "gray.800")}
       borderWidth="1px"
       rounded="lg"
@@ -64,14 +66,16 @@ const PostCard: React.FC<Props> = ({ data, feedView }) => {
               >
                 {post.description}
               </Text>
-              <Stack direction={"row"} pt="2">
+              <Wrap /* direction={"row"} */ pt="2">
                 {post.tags &&
                   post.tags.map((t, i) => (
-                    <Tag key={i} size="lg" textOverflow="ellipsis">
-                      {t as string}
-                    </Tag>
+                    <WrapItem key={i}>
+                      <Tag size="lg" textOverflow="ellipsis">
+                        {t as string}
+                      </Tag>
+                    </WrapItem>
                   ))}
-              </Stack>
+              </Wrap>
             </a>
           </Link>
         </Stack>
