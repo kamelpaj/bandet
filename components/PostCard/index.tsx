@@ -16,6 +16,7 @@ import {
 import Link from "next/link";
 import { iPost } from "../../types/post";
 import { BiComment } from "react-icons/bi";
+import moment from "moment";
 
 interface Props {
   data: iPost;
@@ -51,6 +52,7 @@ const PostCard: React.FC<Props> = ({ data, feedView }) => {
               ? post?.profiles?.username
               : "[no username]"}
           </Text>
+          <Text color={"gray.500"} > {moment(post.created_at).fromNow()}</Text>
         </Flex>
 
         <Stack _hover={{ cursor: "pointer" }} pb="2">
@@ -66,7 +68,7 @@ const PostCard: React.FC<Props> = ({ data, feedView }) => {
               >
                 {post.description}
               </Text>
-              <Wrap /* direction={"row"} */ pt="2">
+              <Wrap pt="2">
                 {post.tags &&
                   post.tags.map((t, i) => (
                     <WrapItem key={i}>
