@@ -37,7 +37,7 @@ export default function Upload() {
   const [isFileAllowed, setIsFileAllowed] = useState(false);
 
   useEffect(() => {
-    const regex = new RegExp(/^.*\/(mp3|ogg|wav|x-m4a|m4a|flac|mpeg)$/i);
+    const regex = new RegExp(/^.*\/(mp3|ogg|wav|x-m4a|m4a|flac|mpeg|aac)$/i);
     if (file) setIsFileAllowed(regex.test(file?.type));
   }, [file]);
 
