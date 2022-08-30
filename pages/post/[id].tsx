@@ -71,7 +71,7 @@ const Post: NextPage = (): JSX.Element => {
     setPostCommentLoading(false);
   };
 
-  if (isLoading) return <Spinner />;
+  if (isLoading) return <Center pt="4"><Spinner /> </Center>;
   if (error) return <Error message={error.message} />;
   return (
     <>
