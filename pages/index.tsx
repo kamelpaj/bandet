@@ -14,6 +14,15 @@ const Home: NextPage = () => {
     {}
   );
 
+  if (error) return <Error message={error.message} />;
+
+  if (isLoading)
+    return (
+      <Center w="full" h="full">
+        <Spinner size="lg" />
+      </Center>
+    );
+
   return (
     <>
       <Head>
@@ -21,35 +30,26 @@ const Home: NextPage = () => {
         <meta name="description" content="real bandet shiieeet" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-
-      <Flex
-        alignItems={"center"}
-        direction={{ base: "column", lg: "row" }}
-        p="4"
-        gap="2"
-      >
-        <>
-          {isLoading && (
-            <Center w="full" h="full">
-              <Spinner size="lg" />
-            </Center>
-          )}
-          {error && <Error message={error.message} />}
-
-          <Wrap justifyContent={"center"}>
-            {data &&
-              data?.length > 0 &&
-              data.map((postData, i) => (
-                <WrapItem
-                  key={i}
-                  w={{ base: "full", md: "auto" }}
-                >
-                  <PostCard feedView data={postData} />
-                </WrapItem>
-              ))}
-          </Wrap>
-        </>
-      </Flex>
+      <Center w="full" h="full">
+        <Flex
+          alignItems={"center"}
+          direction={{ base: "column", lg: "row" }}
+          p="4"
+          gap="2"
+        >
+          <>
+            <Wrap justifyContent={"center"}>
+              {data &&
+                data?.length > 0 &&
+                data.map((postData, i) => (
+                  <WrapItem key={i} w={{ base: "full", md: "auto" }}>
+                    <PostCard feedView data={postData} />
+                  </WrapItem>
+                ))}
+            </Wrap>
+          </>
+        </Flex>
+      </Center>
     </>
   );
 };
