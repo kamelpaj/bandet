@@ -29,7 +29,7 @@ const PostCard: React.FC<Props> = ({ data, feedView }) => {
   return (
     <Stack
       borderRadius="lg"
-      maxW={{ base: "100vw", md: "540px" }}
+      w={feedView ? undefined : { base: "100vw", md: "540px" }}
       h="25rem"
       bg={useColorModeValue("white", "gray.800")}
       borderWidth="1px"
@@ -51,7 +51,7 @@ const PostCard: React.FC<Props> = ({ data, feedView }) => {
               ? post?.profiles?.username
               : "[no username]"}
           </Text>
-          <Text color={"gray.500"} > {moment(post.created_at).fromNow()}</Text>
+          <Text color={"gray.500"}> {moment(post.created_at).fromNow()}</Text>
         </Flex>
 
         <Stack _hover={{ cursor: "pointer" }} pb="2">
@@ -89,7 +89,11 @@ const PostCard: React.FC<Props> = ({ data, feedView }) => {
       {feedView && (
         <HStack pt="4">
           <Link href={`/post/${post.id}`}>
-            <Button aria-label="See comments" leftIcon={<BiComment />} variant="ghost">
+            <Button
+              aria-label="See comments"
+              leftIcon={<BiComment />}
+              variant="ghost"
+            >
               {post.comment ? post.comment.length : 0}
             </Button>
           </Link>
