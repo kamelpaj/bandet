@@ -14,7 +14,7 @@ import {
   WrapItem,
 } from "@chakra-ui/react";
 import Link from "next/link";
-import { iPost } from "../../types/post";
+import { iPost } from "~types/post";
 import { BiComment } from "react-icons/bi";
 import moment from "moment";
 

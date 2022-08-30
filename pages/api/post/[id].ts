@@ -1,7 +1,6 @@
 import type { NextApiRequest, NextApiResponse } from "next";
-import { iPost } from "../../../types/post";
-import { definitions } from "../../../types/supabase";
-import { supabase } from "../../../utils/supabase";
+import { definitions } from "~types/supabase";
+import { supabase } from "~utils/supabase";
 
 export default async function handler(
   req: NextApiRequest,

@@ -19,10 +19,10 @@ import {
 } from "@chakra-ui/react";
 import { MoonIcon, SunIcon } from "@chakra-ui/icons";
 import { useRouter } from "next/router";
-import { supabase } from "../../utils/supabase";
+import { supabase } from "~utils/supabase";
 import Link from "next/link";
 import { HiOutlineUpload, HiOutlineMicrophone } from "react-icons/hi";
-import { useAuthStore } from "../../store/authStore";
+import { useAuthStore } from "~store/authStore";
 
 export default function Header() {
   const { colorMode, toggleColorMode } = useColorMode();

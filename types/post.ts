@@ -1,4 +1,4 @@
-import { definitions } from "./supabase";
+import { definitions } from "~types/supabase";
 
 export interface iPost {
   post: definitions["post"] & {

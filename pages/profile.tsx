@@ -11,10 +11,10 @@ import {
   Center,
   useToast,
 } from "@chakra-ui/react";
-import { supabase } from "../utils/supabase";
+import { supabase } from "~utils/supabase";
 import { useEffect, useState } from "react";
-import { useAuthStore } from "@store/authStore";
-import { definitions } from "../types/supabase";
+import { useAuthStore } from "~store/authStore";
+import { definitions } from "~types/supabase";
 
 export default function Profile(): JSX.Element {
   const [currentUsername, setCurrentUsername] = useState("");

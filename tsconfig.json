@@ -16,11 +16,11 @@
     "incremental": true,
     "baseUrl": ".",
     "paths": {
-      "@components/*": ["components/*"],
-      "@queries/*": ["queries/*"],
-      "@utils/*": ["utils/*"],
-      "@store/*": ["store/*"],
-      "@types/*": ["types/*"]
+      "~components/*": ["components/*"],
+      "~queries/*": ["queries/*"],
+      "~utils/*": ["utils/*"],
+      "~store/*": ["store/*"],
+      "~types/*": ["types/*"]
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
