@@ -1,4 +1,12 @@
-import { Center, Flex, Spinner, Wrap, WrapItem } from "@chakra-ui/react";
+import {
+  Center,
+  Flex,
+  SimpleGrid,
+  Spinner,
+  Stack,
+  Wrap,
+  WrapItem,
+} from "@chakra-ui/react";
 import { useQuery } from "@tanstack/react-query";
 import type { NextPage } from "next";
 import Head from "next/head";
@@ -30,26 +38,16 @@ const Home: NextPage = () => {
         <meta name="description" content="real bandet shiieeet" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <Center w="full" h="full">
-        <Flex
-          alignItems={"center"}
-          direction={{ base: "column", lg: "row" }}
-          p="4"
-          gap="2"
-        >
-          <>
-            <Wrap justifyContent={"center"}>
-              {data &&
-                data?.length > 0 &&
-                data.map((postData, i) => (
-                  <WrapItem key={i} w={{ base: "full", md: "auto" }}>
-                    <PostCard feedView data={postData} />
-                  </WrapItem>
-                ))}
-            </Wrap>
-          </>
-        </Flex>
-      </Center>
+
+      <>
+        <SimpleGrid columns={{ base: 1, md: 3 }} spacing="1rem" p="1rem">
+          {data &&
+            data?.length > 0 &&
+            data.map((postData, i) => (
+              <PostCard key={postData.post.id} feedView data={postData} />
+            ))}
+        </SimpleGrid>
+      </>
     </>
   );
 };
