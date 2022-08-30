@@ -90,7 +90,7 @@ const PostCard: React.FC<Props> = ({ data, feedView }) => {
       {feedView && (
         <HStack pt="4">
           <Link href={`/post/${post.id}`}>
-            <Button aria-label="See comments" leftIcon={<BiComment />}>
+            <Button aria-label="See comments" leftIcon={<BiComment />} variant="ghost">
               {post.comment ? post.comment.length : 0}
             </Button>
           </Link>
