@@ -29,7 +29,6 @@ const PostCard: React.FC<Props> = ({ data, feedView }) => {
   return (
     <Stack
       borderRadius="lg"
-      w={{ base: "100%", md: "540px" }}
       maxW={{ base: "100vw", md: "540px" }}
       h="25rem"
       bg={useColorModeValue("white", "gray.800")}

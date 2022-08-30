@@ -40,10 +40,10 @@ const Home: NextPage = () => {
       </Head>
 
       <>
-        <SimpleGrid columns={{ base: 1, md: 3 }} spacing="1rem" p="1rem">
+        <SimpleGrid columns={{ base: 1, md: 2, lg: 3 }} spacing="1rem" p="1rem">
           {data &&
             data?.length > 0 &&
-            data.map((postData, i) => (
+            data.map((postData) => (
               <PostCard key={postData.post.id} feedView data={postData} />
             ))}
         </SimpleGrid>
