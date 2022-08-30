@@ -99,7 +99,7 @@ export default function Upload() {
             duration: 5000,
             isClosable: true,
           });
-          router.push("/"); // TODO: Routa till post när jag satt upp komponenten
+          router.push(`/post/${postData[0].id}`);
         }
 
         if (postError || fileUploadError) {
