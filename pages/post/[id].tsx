@@ -85,7 +85,7 @@ const Post: NextPage = (): JSX.Element => {
         <>
           <Head>
             <title> bandet {" •"} {data.post.title} </title>
-            <meta property="og:title" content="My page title" key="title" />
+            <meta property="og:title" content={data.post.description} key="title" />
           </Head>
           <Center pt="4">
             <VStack>
