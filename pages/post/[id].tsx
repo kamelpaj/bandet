@@ -22,6 +22,7 @@ import { useState } from "react";
 import { useAuthStore } from "~store/authStore";
 import { supabase } from "~utils/supabase";
 import moment from "moment";
+import Head from "next/head";
 
 const Post: NextPage = (): JSX.Element => {
   const router = useRouter();
@@ -71,58 +72,69 @@ const Post: NextPage = (): JSX.Element => {
     setPostCommentLoading(false);
   };
 
-  if (isLoading) return <Center pt="4"><Spinner /> </Center>;
+  if (isLoading)
+    return (
+      <Center pt="4">
+        <Spinner />{" "}
+      </Center>
+    );
   if (error) return <Error message={error.message} />;
   return (
     <>
       {data && (
-        <Center pt="4">
-          <VStack>
-            <PostCard feedView={false} data={data} />
-            {session && (
-              <HStack w="full" py="4">
-                <Avatar size={{ base: "sm", md: "md" }} />
-                <Input
-                  value={comment}
-                  type="text"
-                  placeholder="New comment..."
-                  variant="filled"
-                  onChange={(e) => setComment(e.target.value)}
-                />
-                <Button
-                  onClick={handlePostComment}
-                  disabled={comment.length < 1 || postCommentLoading}
-                  isLoading={postCommentLoading}
-                >
-                  {postCommentLoading ? <Spinner /> : "Send"}
-                </Button>
-              </HStack>
-            )}
-            <VStack spacing={4} w="100%" pt="6">
-              {data.post.comment?.length &&
-                data?.post?.comment.map((c) => (
-                  <Stack
-                    mt={2}
-                    direction={"row"}
-                    spacing={4}
-                    key={c.id}
-                    w="full"
+        <>
+          <Head>
+            <title> bandet {" •"} {data.post.title} </title>
+            <meta property="og:title" content="My page title" key="title" />
+          </Head>
+          <Center pt="4">
+            <VStack>
+              <PostCard feedView={false} data={data} />
+              {session && (
+                <HStack w="full" py="4">
+                  <Avatar size={{ base: "sm", md: "md" }} />
+                  <Input
+                    value={comment}
+                    type="text"
+                    placeholder="New comment..."
+                    variant="filled"
+                    onChange={(e) => setComment(e.target.value)}
+                  />
+                  <Button
+                    onClick={handlePostComment}
+                    disabled={comment.length < 1 || postCommentLoading}
+                    isLoading={postCommentLoading}
                   >
-                    <Avatar src={c.profiles.avatar_url} />
-                    <Stack direction={"column"} spacing={0} fontSize={"sm"}>
-                      <Text fontWeight={600}>
-                        {c.profiles.username}
-                        <Text as="span" color={"gray.500"}>
-                          {" •"} {moment(c.created_at).fromNow()}
+                    {postCommentLoading ? <Spinner /> : "Send"}
+                  </Button>
+                </HStack>
+              )}
+              <VStack spacing={4} w="100%" pt="6">
+                {data.post.comment?.length &&
+                  data?.post?.comment.map((c) => (
+                    <Stack
+                      mt={2}
+                      direction={"row"}
+                      spacing={4}
+                      key={c.id}
+                      w="full"
+                    >
+                      <Avatar src={c.profiles.avatar_url} />
+                      <Stack direction={"column"} spacing={0} fontSize={"sm"}>
+                        <Text fontWeight={600}>
+                          {c.profiles.username}
+                          <Text as="span" color={"gray.500"}>
+                            {" •"} {moment(c.created_at).fromNow()}
+                          </Text>
                         </Text>
-                      </Text>
-                      <Text color={textColor}> {c.text} </Text>
+                        <Text color={textColor}> {c.text} </Text>
+                      </Stack>
                     </Stack>
-                  </Stack>
-                ))}
+                  ))}
+              </VStack>
             </VStack>
-          </VStack>
-        </Center>
+          </Center>
+        </>
       )}
     </>
   );
